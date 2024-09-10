@@ -1,0 +1,160 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+}
+:root {
+  --sm: 14px;
+  --md: 16px;
+  --lg: 18px;
+  --white: #ffffff;
+  --yellow: #f6ec36;
+  --black: #000000;
+  --red: #DA291C;
+  }
+
+body {
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+  }
+
+#header{
+  width: auto;
+  height: auto;
+  background-color: var(--red);
+  display: flex;
+}
+#logoWEB{
+  height: auto;
+  width: 120px;
+  margin: 20px;
+}
+
+#footer{
+  width: auto;
+  height: 20vh;
+  background-color: var(--black);
+  margin-top: auto;
+}
+
+main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#otherProd{
+  height: max-content;
+  width: 60vw;
+  text-align: center;
+}
+
+#otherProd img{
+  width: 6vw;
+  height: auto;
+  cursor: pointer;
+  margin: 5px;
+  margin-left: 30px;
+}
+#otherProd img:hover{
+  width: 8vw;
+  height: auto;
+}
+
+#selectProd{
+  display:flex ;
+  padding: 90px;
+  width: 60vw;
+}
+
+#imagenes{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#selectProd img{
+  height: auto;
+  width: 17vw;
+}
+
+#productImags{
+  width: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+#productImags img{
+  height: auto;
+  width: 5vw;
+  padding: 4px;
+}
+#productImags img:hover{
+  cursor: pointer;
+  border: var(--yellow) 1px inset;
+}
+
+#productDescription{
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+
+#line{
+  width: 100vw;
+  border: var(--yellow) 1px solid;
+}
+
+#botton{
+  width: 30%;
+  color: var(--black);
+  font-weight: 900;
+  cursor: pointer;
+  border-radius: 0 6px 6px 0;
+  background-color: var(--yellow);
+  padding: 10px;
+  width: auto;
+  height: auto;
+  border-color: #DA291C;
+  border-style: solid;
+}
+
+#cupon{
+  width: 70%;
+  color: var(--black);
+  font-weight: 900;
+  cursor: pointer;
+  border-radius: 6px 0 0 6px;
+  background-color: var(--white);
+  padding: 10px;
+  width: auto;
+  height: auto;
+  border-color: #DA291C;
+  margin-top: 10px;
+  border-style: dashed;
+}
+h3{
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+h2{
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+#result{
+  color: green;
+  font-weight: 900;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+#itemPrice {
+  font-weight: 900;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.inactive{
+  display: none;
+}

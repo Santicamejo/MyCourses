@@ -1,0 +1,15 @@
+USE metro_cdmx;
+
+-- ALTER TABLE `lines`
+-- MODIFY COLUMN `name` VARCHAR(255) NOT NULL;
+
+ALTER TABLE `lines`
+MODIFY COLUMN `color` VARCHAR(255) NOT NULL;
+
+ALTER TABLE stations
+MODIFY COLUMN `name` VARCHAR(255) NOT NULL;
+
+ALTER TABLE trains
+RENAME COLUMN `lines_id` TO `line_id`;
+
+

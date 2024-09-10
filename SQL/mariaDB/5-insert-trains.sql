@@ -1,0 +1,13 @@
+INSERT INTO `trains` (serial_number, line_id, type, year) VALUES
+("0JFXAFE4Q8", 1, 1, 1963),
+("DDASKDSKKS", 2, 2, 1980),
+("IFNIOEFFFF", 3, 4, 1997),
+("GHHRRGFGDG", 4, 4, 1974),
+("OIOLUYKGKK", 5, 2, 1999),
+("KMUMBGBFBD", 6, 1, 2002),
+("KMGNRFTTTT", 7, 1, 2009),
+("BCBFBDDFFF", 8, 1, 1967),
+("YUTJUUJUJU", 9, 2, 1966),
+("YLYUJYFDDS", 10, 3, 1988),
+("YTHYTHRGDD", 11, 3, 1979),
+("BTHTESSFRE", 12, 4, 1984);
