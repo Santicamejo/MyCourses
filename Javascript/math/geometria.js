@@ -11,6 +11,7 @@ console.log({
 console.groupEnd('cuadrado');
 
 console.group('%c Triangulo', 'color: DarkOliveGreen; font-size: 20px;')
+
 const ladoTrianguloUNO = 6;
 const ladoTrianguloDOS = 6;
 const ladoTrianguloBASE = 4;
@@ -67,5 +68,7 @@ function radioDiametro(radio){
 
     return console.log('la medida de la circunferecia es: '+circunferencia.toFixed(1)+' y el area del circulo es: '+areaCirculo.toFixed(1))
 }
+
+console.log(radioDiametro(6));
 
 console.groupEnd('Circulo');
