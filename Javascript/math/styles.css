@@ -16,11 +16,12 @@ header{
     display: flex;
     width: 100vw;
     background-color: var(--naranja);
+    margin-bottom: 80px;
 }
 #consoleSection{
     margin: 0 auto;     /* alinear item */
     margin-top: 30px;
-    width: 80vw;
+    width: 65vw;
 }
 #consoleList{
     padding: 20px;
@@ -30,31 +31,55 @@ header{
     padding-left: 0px;
 }
 #consoleList a{
-    font: 300 var(--blanco);
+    font: 300;
     color: var(--blanco);
 }
 #consoleList li{
-    padding: 18px;
+    padding: 20px;
     padding-bottom: 0px;
-    border: solid var(--blanco) 0.3px;
+    border:1px solid var(--blanco) ;
     background-color: var(--negro);
-    margin-bottom: 1px;
+    border-radius: 8px 8px 0px 0px;
 }
+
+#uno:hover{
+    border-bottom: 1px solid var(--negro);
+}
+#dos:hover{
+    border-bottom: 1px solid var(--negro);
+}
+#tres:hover{
+    border-bottom: 1px solid var(--negro);
+}
+#cuatro:hover{
+    border-bottom: 1px solid var(--negro);
+}
+#cinco:hover{
+    border-bottom: 1px solid var(--negro);
+}
+#seis:hover{
+    border-bottom: 1px solid var(--negro);
+}
+
+
 #console{
-    border-left:solid var(--blanco) 0.3px;
+    border-left: 1px solid var(--blanco);
     background-color: var(--negro);
     height: 60vh;
+    border-radius: 0px 15px 15px 15px;
 }
 #fotocasa img{
     width: 20px;
     height: auto;
     margin-bottom: 10px;
 }
-#consolaTextarea{
-    background-color: #000000;
+#fotocasa{
+    border-bottom: 1px solid var(--negro);
+}
+#console p{
+    color: var(--blanco);
     border: none;
-    width: 80vw;
-    height: 60vh;
+    width: auto;
     color: var(--blanco);
     padding: 20px;
     font-size: medium;
