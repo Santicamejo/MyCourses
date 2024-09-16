@@ -1,0 +1,75 @@
+:root{
+    --background: #B5C18E;
+    --buttons: #F7DCB9;
+    --beige: #4d3731;
+    --brown: #508fcb;
+    --blue: #35638e;
+}
+body {
+    background-color: var(--blue);
+    color: #fff;  
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .game-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  canvas {
+    border: 2px solid var(--brown);
+    border-radius: 15px;
+    background-color: var(--brown);
+  }
+  
+  .btns {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
+
+  .btns img{
+    width: 25px;
+    height: auto;
+  }
+  
+  button {
+    background-color: var(--beige);
+    border-radius: 8px;
+    box-shadow: 2px 2px 1px 1px rgba(0, 0, 0, 0.2);
+    font-family: inherit;
+    margin: 0;
+    padding: 5px 20px;
+    width: 100px;
+  }
+  button:not(:last-child) {
+    margin-right: 10px;
+  }
+  
+  .messages {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 460px;
+  }
+  
+  p {
+    display: block;
+    margin: 0;
+    width: 100%;
+  }
+  
+  @media (max-width: 440px) {
+    button { margin-top: 25px; }
+    #up, #down { margin-left: 100%; margin-right: 100%; }
+  }
