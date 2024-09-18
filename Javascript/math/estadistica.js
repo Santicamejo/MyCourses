@@ -11,7 +11,7 @@ function calcularPromedioValores(a, b){
 }
 
 // Calcular promedio de un array
-function calcularPromedioLista(){
+function calcularPromedioLista(lista){
 
     const largoArr = lista.length;
     const sumaTotal = lista.reduce((x, y) => x + y);
@@ -32,7 +32,7 @@ function calcularPromedioLista(){
 }
 
 // Ordenar lista desordenada (de menor a mayor)
-function ordenarLista(listaDesordenada){
+function ordenarLista(listaEjemplo){
     // function listaordenada(a, b){
     // Una manera de hacer que la fiuncion ordene el array
 
@@ -50,7 +50,7 @@ function ordenarLista(listaDesordenada){
     //     esta funcion es para ver dos maneras de como funciona la logica de el .sort
     // } 
 
-    const lista = listaDesordenada.sort((a, b) => a - b);
+    const lista = listaEjemplo.sort((a, b) => a - b);
     return lista;
 }
 

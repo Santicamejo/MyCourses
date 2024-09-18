@@ -17,9 +17,8 @@ function medianaPorPersona(nombrePersona) {
     return elemento.salario;
   });
 
-  const medianaSalarios = PlatziMath.calcularMediana(salarios);
+  const medianaSalarios = mathFunc.calcularMediana(salarios);
 
-  console.log(medianaSalarios);
   return medianaSalarios;
 }
 
@@ -36,7 +35,7 @@ function proyeccionPorPersona(nombrePersona) {
     porcentajesCrecimiento.push(porcentajeCrecimiento)
   }
 
-  const medianaPorcentajesCrecimiento = PlatziMath.calcularMediana(porcentajesCrecimiento);
+  const medianaPorcentajesCrecimiento = mathFunc.calcularMediana(porcentajesCrecimiento);
 
   // console.log({porcentajesCrecimiento, medianaPorcentajesCrecimiento});
 
@@ -86,6 +85,6 @@ function medianaEmpresaYear(nombre, year) {
   } else if (!empresas[nombre][year]) {
     console.warn('La empresa no dio salarios ese año');
   } else {
-    return PlatziMath.calcularMediana(empresas[nombre][year]);
+    return mathFunc.calcularMediana(empresas[nombre][year]);
   }
 }
