@@ -26,8 +26,12 @@ function startGame() {
     game.textAlign = 'end'
 
     for (let i = 1; i <= 10; i++) {
-        game.fillText(emojis['X'], elementSize * i + 15,elementSize * i - 10)
+        for(let j = 1;j <= 10; j++){
+            game.fillText(emojis['X'], elementSize * i + 15, elementSize * j - 10)
+        }
     }
+
+    console.log(maps[1])
 
     // window.innerHeight
     // window.innerWidth
