@@ -8,6 +8,28 @@ function reload(){
     window.location.reload();
 }
 
+const posPlayer = {
+    x: undefined,
+    y: undefined
+}
+
+let canvaSize = Math.min(window.innerHeight, window.innerWidth)*0.75;
+        // Math.min toma el valor de los dos que en el momento sea el mas pequeño para multiplicarlo por 0,75
+    
+const elementSize = canvaSize / 10.2
+
+function movePlayer() {
+    const lastPos = {
+        x: posPlayer.x, 
+        y: posPlayer.y + elementSize
+}
+    console.log(posPlayer);
+    console.log(lastPos)
+    
+    game.fillText(emojis['PLAYER'], posPlayer.x, posPlayer.y)
+    game.fillText(emojis['FIRE'], lastPos.x, lastPos.y)
+}
+
 function startGame() {
 
     // window.innerHeight
@@ -26,20 +48,16 @@ function startGame() {
     // }else{
     //     canvaSize = innerHeight * .75
     // }
-    let canvaSize = Math.min(window.innerHeight, window.innerWidth)*0.75;
-        // Math.min toma el valor de los dos que en el momento sea el mas pequeño para multiplicarlo por 0,75
     
     canvas.setAttribute('width', canvaSize)
     canvas.setAttribute('height', canvaSize)
-
-    const elementSize = canvaSize / 10.2
  
     game.font = elementSize + 'px Verdana';
     game.textAlign = 'end'
 
         //Con .trim() cortamos los especios en blanco del array(solo funciona con strigs)
         //Con Split separamos un string en varios arrays con un separador que determinemos
-    const map = maps[1];
+    const map = maps[0];
     const mapRows = map.trim().split('\n')
     const mapRowCol = mapRows.map(row => row.trim().split(''))
         //En este codigo creamos la variable mapRowCol que le hace un .map a mapRow(Array) para por cada elemento hacer un trim y split y poder tener todos los caracteres separados
@@ -56,10 +74,25 @@ function startGame() {
 
     mapRowCol.forEach((row, rowI) => {
         row.forEach((col, colI) => {
-            game.fillText(emojis[col], elementSize * (colI + 1.2), elementSize * (rowI + 0.98), )
+            posX = elementSize *  (colI + 1.2);
+            posY = elementSize * (rowI + 0.98)
+            game.fillText(emojis[col], posX, posY)           
+
+//------------------------------ CREACION del jugador -------------------------------------
+
+            if(col == 'O'){
+                
+                posPlayer.y = posY
+                posPlayer.x = posX
+
+            }
             // console.log({row, rowI, col, rowI})
+            
         });        
     });
+
+    movePlayer()
+
 }
 //------------------------------ MOVIMIENTOS del jugador -------------------------------------
 
@@ -75,40 +108,66 @@ leftBtn.addEventListener('click', movementLeft);
 
 function movementUp(){
     console.log('Move UP')
+    posPlayer.y -= elementSize;
+    movePlayer();
 }
 function movementRight(){
     console.log('Move RIGHT')
+    posPlayer.x += elementSize;
+    movePlayer();
 }
 
 function movementDown(){
     console.log('Move DOWN')
+    posPlayer.y += elementSize;
+    movePlayer();
 }
 
 function movementLeft(){
     console.log('Move LEFT')
+    posPlayer.x -= elementSize;
+    movePlayer();
 }
 
-window.addEventListener('click', (e) => {
-    let key = e.key
+window.addEventListener('keydown', moveByKeys)
 
-    switch(key) {
-        case 'keyW':
-        movementUp;
+function moveByKeys(key){
+    switch(key.code) {
+        case 'KeyW':
+        movementUp();
         break;
 
-        case 'keyRight':
-        movementRight;
+        case 'KeyD':
+        movementRight();
         break;
 
-        case 'keyDown':
-        movementDown;
+        case 'KeyS':
+        movementDown();
         break;
 
-        case 'keyLeft':
-        movementLeft;
+        case 'KeyA':
+        movementLeft();
+        break;
+        
+        case 'ArrowUp':
+        movementUp();
+        break;
+
+        case 'ArrowRight':
+        movementRight();
+        break;
+
+        case 'ArrowDown':
+        movementDown();
+        break;
+
+        case 'ArrowLeft':
+        movementLeft();
         break;
 
         default:
             break;
     }
-})
+}
+
+
