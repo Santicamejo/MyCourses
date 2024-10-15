@@ -6,29 +6,27 @@ window.addEventListener('resize', reload);
 
 function reload(){
     window.location.reload();
-}
+};
+
+//creamos los objetos en const porque javascript los procesa distinto que las variables, asi que podemos redefinir los valores del objeto
+let mapLVL = 0;
 
 const posPlayer = {
     x: undefined,
     y: undefined
-}
+};
 
+const posGoal = {
+    x: undefined,
+    y: undefined
+};
+
+const posRocks = []
+ 
 let canvaSize = Math.min(window.innerHeight, window.innerWidth)*0.75;
         // Math.min toma el valor de los dos que en el momento sea el mas pequeño para multiplicarlo por 0,75
     
 const elementSize = canvaSize / 10.2
-
-function movePlayer() {
-    const lastPos = {
-        x: posPlayer.x, 
-        y: posPlayer.y + elementSize
-}
-    console.log(posPlayer);
-    console.log(lastPos)
-    
-    game.fillText(emojis['PLAYER'], posPlayer.x, posPlayer.y)
-    game.fillText(emojis['FIRE'], lastPos.x, lastPos.y)
-}
 
 function startGame() {
 
@@ -57,11 +55,16 @@ function startGame() {
 
         //Con .trim() cortamos los especios en blanco del array(solo funciona con strigs)
         //Con Split separamos un string en varios arrays con un separador que determinemos
-    const map = maps[0];
+    const map = maps[mapLVL];
     const mapRows = map.trim().split('\n')
     const mapRowCol = mapRows.map(row => row.trim().split(''))
         //En este codigo creamos la variable mapRowCol que le hace un .map a mapRow(Array) para por cada elemento hacer un trim y split y poder tener todos los caracteres separados
     console.log(map, mapRows, mapRowCol)
+    
+//---------------------------- ELIMINAR personaje anterior -----------------------------------
+
+    game.clearRect(0, 0, canvaSize, canvaSize)
+
 
 //---------------------------- RENDER de elementos del mapa ----------------------------------
 
@@ -81,19 +84,47 @@ function startGame() {
 //------------------------------ CREACION del jugador -------------------------------------
 
             if(col == 'O'){
-                
-                posPlayer.y = posY
-                posPlayer.x = posX
-
+                if (!posPlayer.x && !posPlayer.y) {
+                    //creamos un doble condicional para poder validar si las posiciones del jugador ya existen no reescribirlas y hacer que aparezca en la misma posicion luego del clearReact()
+                    posPlayer.y = posY.toFixed(1);
+                    posPlayer.x = posX.toFixed(1);
+                    // console.log({row, rowI, col, rowI})
+                }
+            } else if(col == 'I') {
+                posGoal.x = posX.toFixed(1);
+                posGoal.y = posY.toFixed(1);
+            } else if(col == 'X') {
+                posRocks.push({
+                    x: posX.toFixed(1),
+                    y: posY.toFixed(1),
+                });
             }
-            // console.log({row, rowI, col, rowI})
-            
         });        
     });
 
-    movePlayer()
+    console.log(posRocks)
+
+    movePlayer();
 
 }
+
+function movePlayer() {
+//Creo las detecciones de colisiones, cuando coinciden las coordenadas se vuelve true la variable
+const goalCollisionX = Math.round(posPlayer.x) == Math.round(posGoal.x);
+const goalCollisionY = Math.round(posGoal.y) == Math.round(posPlayer.y);
+const goalCollision = goalCollisionY && goalCollisionX;
+    
+    
+    if (goalCollision) {
+        console.log('Pasas de nivel!');
+        // mapLVL ++
+    }
+
+game.fillText(emojis['PLAYER'], posPlayer.x, posPlayer.y);
+
+posRocks.length = 0
+}
+
 //------------------------------ MOVIMIENTOS del jugador -------------------------------------
 
 const upBtn = document.querySelector('#up');
@@ -108,27 +139,42 @@ leftBtn.addEventListener('click', movementLeft);
 
 function movementUp(){
     console.log('Move UP')
-    posPlayer.y -= elementSize;
-    movePlayer();
-}
+    if (posPlayer.y < elementSize) {
+        console.log("OUT");
+    }else{
+        posPlayer.y -= elementSize;
+        startGame();
+    };
+};
 function movementRight(){
     console.log('Move RIGHT')
-    posPlayer.x += elementSize;
-    movePlayer();
+    if (posPlayer.x > canvaSize) {
+        console.log("OUT");
+    }else{
+        posPlayer.x += elementSize;
+        startGame();
+    };
 }
 
 function movementDown(){
     console.log('Move DOWN')
-    posPlayer.y += elementSize;
-    movePlayer();
-}
+    if (posPlayer.y > canvaSize-elementSize) {
+        console.log("OUT");
+    }else{
+        posPlayer.y += elementSize;
+        startGame();
+    };
+};
 
 function movementLeft(){
     console.log('Move LEFT')
-    posPlayer.x -= elementSize;
-    movePlayer();
+    if (posPlayer.x < (elementSize + elementSize)) {
+        console.log("OUT");
+    }else{
+        posPlayer.x -= elementSize;
+        startGame();
+    };
 }
-
 window.addEventListener('keydown', moveByKeys)
 
 function moveByKeys(key){
