@@ -26,9 +26,11 @@ const posRocks = []
 let canvaSize = Math.min(window.innerHeight, window.innerWidth)*0.75;
         // Math.min toma el valor de los dos que en el momento sea el mas pequeño para multiplicarlo por 0,75
     
-const elementSize = canvaSize / 10.2
+let elementSize = canvaSize / 10.3    
 
 function startGame() {
+
+    console.log(posPlayer)
 
     // window.innerHeight
     // window.innerWidth
@@ -59,7 +61,7 @@ function startGame() {
     const mapRows = map.trim().split('\n')
     const mapRowCol = mapRows.map(row => row.trim().split(''))
         //En este codigo creamos la variable mapRowCol que le hace un .map a mapRow(Array) para por cada elemento hacer un trim y split y poder tener todos los caracteres separados
-    console.log(map, mapRows, mapRowCol)
+    // console.log(map, mapRows, mapRowCol)
     
 //---------------------------- ELIMINAR personaje anterior -----------------------------------
 
@@ -77,8 +79,8 @@ function startGame() {
 
     mapRowCol.forEach((row, rowI) => {
         row.forEach((col, colI) => {
-            posX = elementSize *  (colI + 1.2);
-            posY = elementSize * (rowI + 0.98)
+            posX = elementSize *  (colI + 1.3);
+            posY = elementSize * (rowI + 0.97)
             game.fillText(emojis[col], posX, posY)           
 
 //------------------------------ CREACION del jugador -------------------------------------
@@ -86,23 +88,23 @@ function startGame() {
             if(col == 'O'){
                 if (!posPlayer.x && !posPlayer.y) {
                     //creamos un doble condicional para poder validar si las posiciones del jugador ya existen no reescribirlas y hacer que aparezca en la misma posicion luego del clearReact()
-                    posPlayer.y = posY.toFixed(1);
-                    posPlayer.x = posX.toFixed(1);
+                    posPlayer.x = Math.round(posX);
+                    posPlayer.y = Math.round(posY);
                     // console.log({row, rowI, col, rowI})
                 }
             } else if(col == 'I') {
-                posGoal.x = posX.toFixed(1);
-                posGoal.y = posY.toFixed(1);
+                posGoal.x = Math.round(posX);
+                posGoal.y = Math.round(posY);
             } else if(col == 'X') {
                 posRocks.push({
-                    x: posX.toFixed(1),
-                    y: posY.toFixed(1),
+                    x: Math.round(posX),
+                    y: Math.round(posY),
                 });
             }
         });        
     });
 
-    console.log(posRocks)
+    // console.log(posRocks)
 
     movePlayer();
 
@@ -117,12 +119,23 @@ const goalCollision = goalCollisionY && goalCollisionX;
     
     if (goalCollision) {
         console.log('Pasas de nivel!');
-        // mapLVL ++
+        mapLVL ++
+    }
+
+const rockCollision = posRocks.find(rock => {
+    const rockCollisionX = rock.x == Math.round(posPlayer.x)
+    const rockCollisionY = rock.y == Math.round(posPlayer.y)
+    return rockCollisionX && rockCollisionY;
+});
+
+    if(rockCollision) {
+        alert("Chocaste contra una roca!");
     }
 
 game.fillText(emojis['PLAYER'], posPlayer.x, posPlayer.y);
 
 posRocks.length = 0
+
 }
 
 //------------------------------ MOVIMIENTOS del jugador -------------------------------------
@@ -138,7 +151,7 @@ downBtn.addEventListener('click', movementDown);
 leftBtn.addEventListener('click', movementLeft);
 
 function movementUp(){
-    console.log('Move UP')
+    console.log('UP')
     if (posPlayer.y < elementSize) {
         console.log("OUT");
     }else{
@@ -146,19 +159,20 @@ function movementUp(){
         startGame();
     };
 };
+
 function movementRight(){
-    console.log('Move RIGHT')
-    if (posPlayer.x > canvaSize) {
-        console.log("OUT");
+    console.log('RIGHT')
+    if(posPlayer.x > canvaSize){
+        console.log("OUT")
     }else{
         posPlayer.x += elementSize;
         startGame();
-    };
+    }
 }
 
 function movementDown(){
-    console.log('Move DOWN')
-    if (posPlayer.y > canvaSize-elementSize) {
+    console.log('DOWN')
+    if (posPlayer.y > canvaSize - elementSize) {
         console.log("OUT");
     }else{
         posPlayer.y += elementSize;
@@ -167,7 +181,7 @@ function movementDown(){
 };
 
 function movementLeft(){
-    console.log('Move LEFT')
+    console.log('LEFT')
     if (posPlayer.x < (elementSize + elementSize)) {
         console.log("OUT");
     }else{
