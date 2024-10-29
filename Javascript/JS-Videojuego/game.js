@@ -25,10 +25,30 @@ const posGoal = {
 const posRocks = []
  
 let canvaSize = Math.min(window.innerHeight, window.innerWidth)*0.75;
-        // Math.min toma el valor de los dos que en el momento sea el mas pequeño para multiplicarlo por 0,75
-    
+// Math.min toma el valor de los dos que en el momento sea el mas pequeño para multiplicarlo por 0,75
+
 let elementSize = canvaSize / 10.2
 
+function levelPass(){
+    level ++;
+    startGame();
+}
+
+function levelLost(){
+    lives--
+
+    if(lives <= 0) {
+        level = 0;
+    };
+    
+    posPlayer.x = undefined;
+    posPlayer.y = undefined;
+    startGame();
+}
+
+function gameEnd(){
+    alert("¡¡¡Te pasaste el juego gordooo!!!")
+}
 function movePlayer() {
 
     game.fillText(emojis['PLAYER'], posPlayer.x, posPlayer.y);
@@ -55,25 +75,6 @@ function movePlayer() {
         posRocks.length = 0
 }
 
-function levelPass(){
-    level ++
-    startGame()
-}
-function levelLost(){
-    if (lives >= 1) {
-        posPlayer.x = undefined;
-        posPlayer.y = undefined;
-        startGame()
-        lives --;  
-    }else{
-        level = 0;
-        startGame()
-    }
-}
-
-function gameEnd(){
-    alert("¡¡¡Te pasaste el juego gordooo!!!")
-}
 
 function startGame() {
 
@@ -94,8 +95,8 @@ function startGame() {
     //     canvaSize = innerHeight * .75
     // }
     
-    canvas.setAttribute('width', canvaSize)
-    canvas.setAttribute('height', canvaSize)
+    canvas.setAttribute('width', canvaSize);
+    canvas.setAttribute('height', canvaSize);
  
     game.font = elementSize + 'px Verdana';
     game.textAlign = 'end'
@@ -108,14 +109,14 @@ function startGame() {
         return;
     }
 
-    const mapRows = map.trim().split('\n')
-    const mapRowCol = mapRows.map(row => row.trim().split(''))
+    const mapRows = map.trim().split('\n');
+    const mapRowCol = mapRows.map(row => row.trim().split(''));
         //En este codigo creamos la variable mapRowCol que le hace un .map a mapRow(Array) para por cada elemento hacer un trim y split y poder tener todos los caracteres separados
     // console.log(map, mapRows, mapRowCol)
     
 //---------------------------- ELIMINAR personaje anterior -----------------------------------
 
-    game.clearRect(0, 0, canvaSize, canvaSize)
+    game.clearRect(0, 0, canvaSize, canvaSize);
 
 
 //---------------------------- RENDER de elementos del mapa ----------------------------------
@@ -130,8 +131,8 @@ function startGame() {
     mapRowCol.forEach((row, rowI) => {
         row.forEach((col, colI) => {
             posX = elementSize *  (colI + 1.25);
-            posY = elementSize * (rowI + 0.95)
-            game.fillText(emojis[col], posX, posY)           
+            posY = elementSize * (rowI + 0.95);
+            game.fillText(emojis[col], posX, posY);           
 
 //------------------------------ CREACION del jugador -------------------------------------
 
