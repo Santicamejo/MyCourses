@@ -1,5 +1,6 @@
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d'); 
+const spanLives = document.querySelector('#lives')
 
 window.addEventListener('load', startGame);
 window.addEventListener('resize', reload);
@@ -14,67 +15,24 @@ let lives = 3;
 
 const posPlayer = {
     x: undefined,
-    y: undefined
+    y: undefined,
 };
 
 const posGoal = {
     x: undefined,
-    y: undefined
+    y: undefined,
 };
 
-const posRocks = []
+let rocksPositions = []
  
 let canvaSize = Math.min(window.innerHeight, window.innerWidth)*0.75;
 // Math.min toma el valor de los dos que en el momento sea el mas pequeño para multiplicarlo por 0,75
 
 let elementSize = canvaSize / 10.2
 
-function levelPass(){
-    level ++;
-    startGame();
-}
-
-function levelLost(){
-    lives--
-
-    if(lives <= 0) {
-        level = 0;
-    };
-    
-    posPlayer.x = undefined;
-    posPlayer.y = undefined;
-    startGame();
-}
-
-function gameEnd(){
+function gameWIN(){
     alert("¡¡¡Te pasaste el juego gordooo!!!")
 }
-function movePlayer() {
-
-    game.fillText(emojis['PLAYER'], posPlayer.x, posPlayer.y);
-
-    //Creo las detecciones de colisiones, cuando coinciden las coordenadas se vuelve true la variable
-    const goalCollisionX = posGoal.x == (posPlayer.x).toFixed(3);
-    const goalCollisionY = posGoal.y == (posPlayer.y).toFixed(3);
-    const goalCollision = goalCollisionY && goalCollisionX;
-    
-    if(goalCollision) {
-        console.log("Has pasado de nivel!");
-        levelPass();
-    }
-
-    const rockCollision = posRocks.find(rock => {
-        const rockCollisionX = rock.x == (posPlayer.x).toFixed(3)
-        const rockCollisionY = rock.y == (posPlayer.y).toFixed(3)
-        return rockCollisionX && rockCollisionY;
-    });
-    
-        if(rockCollision) {
-            levelLost()
-        }
-        posRocks.length = 0
-}
-
 
 function startGame() {
 
@@ -104,18 +62,19 @@ function startGame() {
         //Con .trim() cortamos los especios en blanco del array(solo funciona con strigs)
         //Con Split separamos un string en varios arrays con un separador que determinemos
     const map = maps[level];
+
     if (!map) {
-        gameEnd();
+        gameWIN();
         return;
     }
-
     const mapRows = map.trim().split('\n');
     const mapRowCol = mapRows.map(row => row.trim().split(''));
-        //En este codigo creamos la variable mapRowCol que le hace un .map a mapRow(Array) para por cada elemento hacer un trim y split y poder tener todos los caracteres separados
+    //En este codigo creamos la variable mapRowCol que le hace un .map a mapRow(Array) para por cada elemento hacer un trim y split y poder tener todos los caracteres separados
     // console.log(map, mapRows, mapRowCol)
     
-//---------------------------- ELIMINAR personaje anterior -----------------------------------
-
+    //---------------------------- ELIMINAR personaje anterior -----------------------------------
+    showLives();
+    rocksPositions = [];
     game.clearRect(0, 0, canvaSize, canvaSize);
 
 
@@ -130,9 +89,9 @@ function startGame() {
 
     mapRowCol.forEach((row, rowI) => {
         row.forEach((col, colI) => {
+            const emoji = emojis[col]
             posX = elementSize *  (colI + 1.25);
-            posY = elementSize * (rowI + 0.95);
-            game.fillText(emojis[col], posX, posY);           
+            posY = elementSize * (rowI + 0.95);        
 
 //------------------------------ CREACION del jugador -------------------------------------
 
@@ -144,25 +103,81 @@ function startGame() {
                     // console.log({row, rowI, col, rowI})
                 }
             } else if(col == 'I') {
-                posGoal.x = posX.toFixed(3);
-                posGoal.y = posY.toFixed(3);
+                posGoal.x = posX;
+                posGoal.y = posY;
             } else if(col == 'X') {
-                posRocks.push({
-                    x: posX.toFixed(3),
-                    y: posY.toFixed(3)
+                rocksPositions.push({
+                    x: posX,
+                    y: posY
                 });
             }
+
+            game.fillText(emoji, posX, posY);   
         });        
     });
 
     movePlayer();
-
     
 // console.log(posPlayer)
-// console.log(posRocks)
+// console.log(rocksPositions)
 
 }
 
+function movePlayer() {
+
+    //Creo las detecciones de colisiones, cuando coinciden las coordenadas se vuelve true la variable
+    const goalCollisionX = (posGoal.x).toFixed(3) == (posPlayer.x).toFixed(3);
+    const goalCollisionY = (posGoal.y).toFixed(3) == (posPlayer.y).toFixed(3);
+    const goalCollision = goalCollisionY && goalCollisionX;
+    
+    if(goalCollision) {
+        console.log("Has pasado de nivel!");
+        levelPass();
+    }
+
+    const rockCollision = rocksPositions.find(rock => {
+        const rockCollisionX = (rock.x).toFixed(3) == (posPlayer.x).toFixed(3)
+        const rockCollisionY = (rock.y).toFixed(3) == (posPlayer.y).toFixed(3)
+        return rockCollisionX && rockCollisionY;
+    });
+    
+        if(rockCollision) {
+            levelLost();
+        };
+        // rocksPositions.length = 0;
+        // "Limpiar" el array aca me estaba generando probelmas con una recursion infinita
+        game.fillText(emojis['PLAYER'], posPlayer.x, posPlayer.y);
+}
+
+function levelPass(){
+    level ++;
+    startGame();
+}
+
+function levelLost(){
+    console.log("Chocaste!!!");
+    lives--;
+
+    console.log(lives);
+
+    if (lives <= 0) {
+        level = 0;
+        lives = 3;
+      }
+    
+    posPlayer.x = undefined;
+    posPlayer.y = undefined;
+    startGame();
+}
+
+function showLives() {
+    // superPrototipo
+    const arrayVidas = Array(lives).fill(emojis['LIVE']) //[1, 2, 3]
+    // console.log(arrayVidas  )
+
+    spanLives.innerHTML = "";
+    arrayVidas.forEach(LIVE => spanLives.append(LIVE));
+}
 //------------------------------ MOVIMIENTOS del jugador -------------------------------------
 
 const upBtn = document.querySelector('#up');
