@@ -1,6 +1,8 @@
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d'); 
 const spanLives = document.querySelector('#lives')
+const spanTime = document.querySelector('#time')
+const spanRecord = document.querySelector('#record')
 
 window.addEventListener('load', startGame);
 window.addEventListener('resize', reload);
@@ -12,6 +14,13 @@ function reload(){
 //creamos los objetos en const porque javascript los procesa distinto que las variables, asi que podemos redefinir los valores del objeto
 let level = 0;
 let lives = 3;
+
+let timePlayer = 0;
+let timeStart = undefined;
+let timeInterval = 0;
+
+let playerRecord = undefined;
+
 
 const posPlayer = {
     x: undefined,
@@ -31,10 +40,21 @@ let canvaSize = Math.min(window.innerHeight, window.innerWidth)*0.75;
 let elementSize = canvaSize / 10.2
 
 function gameWIN(){
-    alert("¡¡¡Te pasaste el juego gordooo!!!")
+    console.log('Pasaste el juego gordo!!');
+    
+    clearInterval(timeInterval);
+    playerRecord = Date.now() - timeStart;
+    
+    if (playerRecord <= localStorage.getItem("record")) {
+        localStorage.setItem("record", playerRecord)
+    }
 }
 
 function startGame() {
+
+    if (!localStorage.getItem('record')) {
+        localStorage.setItem("record", 10000)
+    }
 
     // window.innerHeight
     // window.innerWidth
@@ -67,6 +87,12 @@ function startGame() {
         gameWIN();
         return;
     }
+
+    if(!timeStart) {
+        timeStart = Date.now();
+        timeInterval = setInterval(showTime, 100)
+    }
+
     const mapRows = map.trim().split('\n');
     const mapRowCol = mapRows.map(row => row.trim().split(''));
     //En este codigo creamos la variable mapRowCol que le hace un .map a mapRow(Array) para por cada elemento hacer un trim y split y poder tener todos los caracteres separados
@@ -163,6 +189,7 @@ function levelLost(){
     if (lives <= 0) {
         level = 0;
         lives = 3;
+        timeStart = Date.now(); 
       }
     
     posPlayer.x = undefined;
@@ -177,6 +204,11 @@ function showLives() {
 
     spanLives.innerHTML = "";
     arrayVidas.forEach(LIVE => spanLives.append(LIVE));
+}
+
+function showTime() {
+    spanTime.innerHTML = Date.now() - timeStart;
+    spanRecord.innerHTML = localStorage.getItem('record')
 }
 //------------------------------ MOVIMIENTOS del jugador -------------------------------------
 
