@@ -11,17 +11,18 @@ function reload(){
     window.location.reload();
 };
 
-//creamos los objetos en const porque javascript los procesa distinto que las variables, asi que podemos redefinir los valores del objeto
+// Creacion de variables
 let level = 0;
 let lives = 3;
 
-let timePlayer = 0;
+let timePlayer = undefined;
 let timeStart = undefined;
-let timeInterval = 0;
+let timeInterval = undefined;
 
 let playerRecord = undefined;
 
 
+//creamos los objetos en const porque javascript los procesa distinto que las variables, asi que podemos redefinir los valores del objeto
 const posPlayer = {
     x: undefined,
     y: undefined,
@@ -39,8 +40,11 @@ let canvaSize = Math.min(window.innerHeight, window.innerWidth)*0.75;
 
 let elementSize = canvaSize / 10.2
 
-function gameWIN(){
+function endGame(){
     console.log('Pasaste el juego gordo!!');
+    
+    posPlayer.x = undefined;
+    posPlayer.y = undefined;
     
     clearInterval(timeInterval);
     playerRecord = Date.now() - timeStart;
@@ -51,6 +55,8 @@ function gameWIN(){
 }
 
 function startGame() {
+
+    
 
     if (!localStorage.getItem('record')) {
         localStorage.setItem("record", 10000)
@@ -84,7 +90,7 @@ function startGame() {
     const map = maps[level];
 
     if (!map) {
-        gameWIN();
+        endGame();
         return;
     }
 
