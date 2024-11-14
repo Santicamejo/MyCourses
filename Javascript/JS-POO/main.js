@@ -260,9 +260,17 @@ class Banda {
   banda.agregarIntegrante(new Integrante({ nombre: "Jhon", instrumento: "Bateria" }))
   
 
+//Abstraccion: Podemos reducir la complejidad y permitir una implementación y diseño eficiente de los datos.
 
+// Ventajas de uso:
+  
+// Evitamos codigo duplicado, es decir, reusamos codigo.
+// Podemos crear múltiples instancias con una sola abstracción.
+// Al encapsular datos, los estamos protegiendo
+// Evitamos código a bajo nivel.
+// Podemos cambiar implementaciones en la clase, sin perjudicar su funcionamiento. 🥵
 
-// ---------------------------------------------o---------------------------------------------
+// ------------------------------------o----------------------------------
 
 class Escuela {
     constructor({
@@ -273,9 +281,8 @@ class Escuela {
         this.id = id;
         this.cursos = []
     }
-    agregarCursos(identificacion) {
-        const isThereTheSameCourse = this.cursos.some(x => x.id = identificacion)
-        this.cursos.push(identificacion)
+    addCourse (curso) {
+        this.cursos.push(curso)
     }
 }
 class Curso {
@@ -283,9 +290,12 @@ class Curso {
         name,
         id,
     }){
-        this.name = name
+        this.name = name;
         this.id = id;
-        this.clases = []
+        this.clases = [];
+    }
+    addClass (clasS) {
+        this.clases.push(clasS)
     }
 }
 class Clase {
@@ -294,9 +304,9 @@ class Clase {
         id,
         teacher,
     }){
-        this.name = name
+        this.name = name;
         this.id = id;
-        this.teacher = teacher
+        this.teacher = teacher;
     }
 }
 class Profesor {
@@ -305,9 +315,12 @@ class Profesor {
         id,
         cursos = [],
     }){
-        this.name = name
+        this.name = name;
         this.id = id;
         this.cursos = cursos; 
+    }
+    addCourse (curso) {
+        this.cursos.push(curso)
     }
 }
 
@@ -320,6 +333,23 @@ const introduccion = new Curso({
     name: "Curso de introduccion WEB",
     id: 1,
 })
+const introduccion1 = new Curso({
+    name: "Curso de introduccion WEB 1 ",
+    id: 1,
+})
+const introduccion2 = new Curso({
+    name: "Curso de introduccion WEB 2 ",
+    id: 1,
+})
+const introduccion3 = new Curso({
+    name: "Curso de introduccion WEB 3 ",
+    id: 1,
+})
+
+escuelaWEB.addCourse(introduccion);
+escuelaWEB.addCourse(introduccion1);
+escuelaWEB.addCourse(introduccion2);
+escuelaWEB.addCourse(introduccion3);
 
 const variables = new Clase({
     name: "Clase de variables",
@@ -330,3 +360,16 @@ const maguery = new Profesor({
     name: "maguery Jhonzon",
     id: 1,
 })
+
+//¿Qué es encapsulamiento? Es guardar, proteger, guardar o limitar el acceso de cierto atributos y/o propiedades en nuestros prototipos y objetos.
+// Cuando hablamos de *encapsulamiento* hablamos de:
+// Esconder métodos y atributos 👻
+// No permitir la alteración de métodos y atributos ❌
+
+//++ Encapsulamiento en JavaScript ++
+// No permitir la alteración de métodos y atributos ❌
+// Formas de aplicar encapsulamiento en JavaScript
+//  Getters y setters 🖐
+//  Namespaces 🙂
+//  Object.defineProperties 🎈
+//  Módulo de ES6 🤝
