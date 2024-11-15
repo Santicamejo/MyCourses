@@ -25,7 +25,7 @@ class Course {
   
     set name(nuevoNombrecito) {
       if (typeof nuevoNombrecito === "string") {
-        return this._name = mayus(nuevoNombrecito);
+        return this._name = mayus(nuevoNombrecito.trim());
       } else {
         console.log("No es tipo string")
       }
@@ -37,7 +37,5 @@ class Course {
     classes: [],
   })
 
-  curso1.name //get
-  curso1.name = "name" //set
-
-
+  curso1.name //getter syntax
+  curso1.name = "name" //setter syntax
