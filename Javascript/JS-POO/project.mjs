@@ -28,7 +28,27 @@ class usuario {
     }
 }
 
-class funcionario {
+// modulos de javascript
+function ingresoFuncionario(id) {
+    const horaCompleta = new Date();
+    const horas = horaCompleta.getHours();
+    const minutos = horaCompleta.getMinutes();
+    const dia = horaCompleta.getDate();
+    const mes = horaCompleta.getMonth();
+
+    console.log(`El funcionario con id ${id} ingreso a las ${horas}:${minutos} del dia ${dia}/${mes}`)
+}
+function salidaFuncionario(id) {
+    const horaCompleta = new Date();
+    const horas = horaCompleta.getHours();
+    const minutos = horaCompleta.getMinutes();
+    const dia = horaCompleta.getDate();
+    const mes = horaCompleta.getMonth();
+
+    console.log(`El funcionario con id ${id} salio a las ${horas}:${minutos} del dia ${dia}/${mes}`)
+}
+
+export class funcionario {
     constructor({
         name,
         id,
@@ -37,6 +57,14 @@ class funcionario {
         this.name = name;
         this.id = id;
         this._password = _password;
+    }
+    // Le paso al modulo el id del funcionario
+    horaDeIngreso(){
+        ingresoFuncionario(this.id);
+    }
+    
+    horaDeSalida(){
+        salidaFuncionario(this.id);
     }
 }
 
@@ -55,6 +83,13 @@ class fondo {
 // ----------------------------CREACION DE INSTANCIAS----------------------------
 
 const usuario1 = new usuario({
+    name: 'Santiago',
+    lastname: 'miranda',
+    _password: 'undefined',
+    _cedula: '0000000-0',
+})  
+
+const funcionario1 = new funcionario({
     name: 'Santiago',
     lastname: 'miranda',
     _password: 'undefined',
