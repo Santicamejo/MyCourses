@@ -134,3 +134,53 @@ function deepCopy(elemento) {
 
 const objeto2 = deepCopy(obj1);
 
+
+
+
+const commonPerson = {
+    name: undefined,
+    changeName(newName) {
+        if (newName === this.name) {
+            console.log("El nombre es igual al acutual")
+        }else{
+            console.log("nombre cambiado correctamente");
+            this.name = newName
+        }
+    },
+    age: undefined,
+    email: undefined,
+    socialmedia: {
+        instagram: undefined,
+        facebook: undefined,
+        Twitter: undefined, 
+    }
+};
+
+const santi = deepCopy(commonPerson);
+
+Object.defineProperty(santi, "name", {
+    value: 'santiago',
+    configurable: false,
+});
+
+
+santi.name = 'sannti'; //me deja editarla
+delete santi.name; //no me deja borrarla ya que configurable es false
+
+Object.seal(santi); // al ejecutar este metodo hace que el objeto no se pueda borrar
+Object.isSealed(santi); // esto valida que el objeto esta 'sellado'
+
+
+// Abstracción con objetos literales y deep copy
+// Object.isSealed()
+// El método Object.isSealed() si el objeto está sellado.
+// Devuelve true si el objeto está sellado, de lo contrario devuelve false. 
+// Un objeto está sellado si no es extensible y si todas sus propiedades no se pueden configurar y por lo tanto no removibles (pero no necesariamente no modificables).
+
+// Object.isFrozen()
+// El método Object.isFrozen() determina si un objeto está congelado.
+// Devuelve true si el objeto está sellado, de lo contrario devuelve false. 
+// Un objeto está sellado si no es extensible y si todas sus propiedades no se pueden configurar y por lo tanto no removibles (pero no necesariamente no modificables).
+
+// Un objeto está congelado si y solo si no es extendible, todas sus propiedades son no-configurables,
+// y todos los datos de sus propiedades no tienen capacidad de escritura
