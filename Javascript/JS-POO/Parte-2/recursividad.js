@@ -134,19 +134,8 @@ function deepCopy(elemento) {
 
 const objeto2 = deepCopy(obj1);
 
-
-
-
 const commonPerson = {
     name: undefined,
-    changeName(newName) {
-        if (newName === this.name) {
-            console.log("El nombre es igual al acutual")
-        }else{
-            console.log("nombre cambiado correctamente");
-            this.name = newName
-        }
-    },
     age: undefined,
     email: undefined,
     socialmedia: {
