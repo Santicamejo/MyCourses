@@ -118,3 +118,68 @@ function createLearningPaths({
 
 const usr = new createStudent({ name: "santiago", email: "Sm861150@gmail.com", age: 22, instagram: "@sannti.camejo",})
 usr.learningPaths = {name: "Escuela de desarollo Web", courses: ["curso1", "curso2", "curso3"]}
+
+// instanceof -------
+function LearningPath({
+    name = requiredParam("name"),
+    courses = [],
+} = {}) {
+    this.name = name;
+    this.courses = courses;
+}
+
+function Student({
+    name = requiredParam("Nombre"),
+    email = requiredParam("Email"),
+    age,
+    x,
+    instagram,
+    facebook,
+    aprovedCourses = [],
+    learningPaths = [],
+} = {}) {
+
+    this.name = name;
+    this.email = email;
+    this.age = age;
+    this.aprovedCourses = aprovedCourses;
+    socialMedia = {
+        x,
+        instagram,
+        facebook,
+    };
+
+    if(isArray(learningPaths)) {
+        this.learningPaths = [];
+        for(LearningPathIndex in learningPaths) {
+            if (learningPaths[LearningPathIndex] instanceof LearningPath) {
+                this.learningPaths.push(learningPaths[LearningPathIndex]);
+                // esta validacion evita que podamos agregar escuelas impostoras a nuestro array de learningPaths, ya que solo valida objetos que son intanceOf de LearningPath
+            }
+        }
+    }
+};
+
+
+const escuelaWeb = new LearningPath({
+    name: "Escuela Web Dev"
+})
+
+const escuelaDS = new LearningPath({
+    name: "Escuela Data science"
+})
+
+const estudiante = new Student({
+    name: "sannti", 
+    email: "sm11111@gmial.com",
+    learningPaths: [
+        escuelaWeb,
+        escuelaDS,
+        {
+        name: "Escuela Falsa",
+        courses: []
+        }
+    ]
+})
+// Student {name: 'sannti', email: 'sm11111@gmial.com', age: undefined, learningPaths: Array(0), aprovedCourses: Array(0)}
+// esto nos dice que estudiante es una instancia del prototipo Student
