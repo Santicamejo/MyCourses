@@ -171,3 +171,53 @@ Object.freeze(santi);
 // Cambia en todas las propiedades configurable: false, con lo que impide que sean borradas
 // Las propiedades aún puede ser modificadas, ya que writable esta true
 Object.seal(santi);
+
+//Metodos Estaticos
+
+//Helpers
+
+function SuperObject() {}
+
+SuperObject.deepCopy = function(elemento) {
+        let copyElemento;
+    
+        const elementoIsObject = isObject(elemento);
+        const elementoIsArray = isArray(elemento);  
+    
+        if (elementoIsArray) {
+            copyElemento = [];
+        } else if(elementoIsObject){
+            copyElemento = {};
+        } else {
+            return elemento;
+        }
+        for(index in elemento) {
+            const indexIsObject = isObject(elemento[index]);
+    
+            if (indexIsObject) {
+                copyElemento[index] = deepCopy(elemento[index])
+            } else {
+                if (elementoIsArray) {
+                    copyElemento.push(elemento[index]);
+                }else{
+                    copyElemento[index] = elemento[index];
+                }
+            }
+        }
+        
+            // debugger
+        
+            return copyElemento;
+}
+
+SuperObject.isArray = function() {
+        return Array.isArray(subject);
+}  
+ 
+SuperObject.isObject = function() {
+        return typeof subject == "object";
+}
+
+SuperObject.requiredParam = function(param) {
+        console.warn(`El campo de ${param} no debe ser vacio`);
+}
