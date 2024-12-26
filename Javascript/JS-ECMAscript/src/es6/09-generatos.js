@@ -82,7 +82,7 @@ console.log(id.next().value);
 // SOLUCION ------------------------
 
 let idS = [];
-let num = 0
+let num = 0;
 
 function* genID() {
     for (num; num < 10; num++) {
