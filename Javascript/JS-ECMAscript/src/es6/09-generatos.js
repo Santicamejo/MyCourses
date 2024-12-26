@@ -52,17 +52,52 @@ console.log(it.next().value);
 // 2
 // 3
 
+// SOLUCION-------------------------------
+
+function* genID() {
+    for (let newId = 1; true; newId++) {
+        yield newId   
+    }
+}
+
+const id = genID();
+console.log(id.next().value);
+console.log(id.next().value);
+console.log(id.next().value);
+
 //Tarea 2: ------------------------------
 
 // Input:
-
 // const id = getId()
 // id.next().value
 // id.next().value
 // id.next().value
 
 // Output:
-
 // AX6SF5S
 // G7QNW01
 // KH3BR02
+
+
+// SOLUCION ------------------------
+
+let idS = [];
+let num = 0
+
+function* genID() {
+    for (num; num < 10; num++) {
+        yield idS.push(Math.random().toString(16).substring(5).toUpperCase());
+    }
+}
+
+const ID = genID();
+console.log(`${ID.next().value} | ${idS[num]}`);
+console.log(`${ID.next().value} | ${idS[num]}`);
+console.log(`${ID.next().value} | ${idS[num]}`);
+console.log(`${ID.next().value} | ${idS[num]}`);
+console.log(`${ID.next().value} | ${idS[num]}`);
+console.log(`${ID.next().value} | ${idS[num]}`);
+console.log(`${ID.next().value} | ${idS[num]}`);
+console.log(`${ID.next().value} | ${idS[num]}`);
+console.log(`${ID.next().value} | ${idS[num]}`);
+console.log(`${ID.next().value} | ${idS[num]}`);
