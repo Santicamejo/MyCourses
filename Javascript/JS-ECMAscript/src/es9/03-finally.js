@@ -6,13 +6,13 @@ sin duplicar el código en ambos casos de éxito y error.
 EJEMPLO -----------------------------------------------*/
 const miPromesa = new Promise((resolve, reject) => {
     // Simulación de operación asíncrona
-    setTimeout(() => resolve('Éxito'), 2500);
+    setTimeout(() => resolve('Éxito - Resolve'), 2500);
 });
 
 miPromesa
     .then((mensajeDeExito) => {console.log(mensajeDeExito);})
     .catch((mensajeDeError) => {console.error(mensajeDeError);})
-    .finally(() => {console.log('Operación completada');});
+    .finally(() => {console.log('Finally SIEMPRE se ejecuta aunque la promesa sea reject y caiga en el catch');});
 
 
 
