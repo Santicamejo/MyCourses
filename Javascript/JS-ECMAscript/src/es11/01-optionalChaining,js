@@ -1,0 +1,16 @@
+//Permite acceder a propiedades de objetos profundamente anidados sin necesidad de verificar explícitamente cada nivel.
+const users = {
+    gndx: {
+        country: "MX"
+    },
+    ana: {
+        country: "CO"
+    },
+    bebeloper: {
+        country: "UY"
+    }
+}
+console.log(users?.bebeloper?.country);//UY
+console.log(users?.neneloper?.country); //undefined
+//Si abusas del encadenamiento opcional y existe un error en un objeto, 
+//el programa podría "ocultarlo" por un undefined, provocando que el debugging sea más complicado.

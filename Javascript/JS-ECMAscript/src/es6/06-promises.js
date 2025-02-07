@@ -66,13 +66,17 @@ La tarea es usar una promesa para determinar si el número es par o impar.
 La promesa se debe resolver si el número es par y rechazar si el número es impar. 
 Luego, utilice los métodos .then y .catch para imprimir mensajes apropiados en cada caso.
 */
+
+
 function lanzarDado() {
     function generateDice(faces){
         return Math.floor(Math.random()* faces) + 1;
-        }
-
+    }
+    
     let num = generateDice(6);
-
+    
+    //"resolve" y "reject" no son palabras reservadas (pero sí comúnmente usadas en la sintaxis de una promesa. Se puede usar cualquier nombre
+    
     return new Promise((resolve, reject) => {
         if(num % 2 == 0){
             resolve('El número '+(num)+' es par');
