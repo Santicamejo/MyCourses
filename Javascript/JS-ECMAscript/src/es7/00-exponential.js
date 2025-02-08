@@ -1,2 +1,2 @@
-const num = 3 ** 2;
+const num = 3 ** 2; //9
 console.log(num);
