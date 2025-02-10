@@ -8,7 +8,7 @@ console.log(list);
 
 // // bonus
 // Cómo quitar los elementos repetidos en una sola línea
-// 👨‍💻 Para crear un array sin elementos repetidos, podemos utilizar Set y el operador de propagación de la siguiente manera:
+// Para crear un array sin elementos repetidos, podemos utilizar Set y el operador de propagación de la siguiente manera:
 
 
 // const array = [1, 1, 2, 2, 3, 4, 4, 5]

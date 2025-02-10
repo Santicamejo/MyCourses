@@ -1,3 +1,5 @@
+/* El método includes permite comprobar si un array contiene un determinado elemento, devolviendo true o false. */
+
 let arrayNums = [1,2,3,4,5,6];
 
 console.log(arrayNums.includes(4));

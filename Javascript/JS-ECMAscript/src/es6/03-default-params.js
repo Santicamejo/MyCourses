@@ -1,5 +1,6 @@
 
-/*Los parámetros por defecto en ES6 son una característica útil que simplifica la escritura de funciones al permitir valores predefinidos para los parámetros que no se proporcionen al llamar a la función. */
+/*Los parámetros por defecto en ES6 son una característica útil que simplifica la escritura de funciones al permitir valores predefinidos 
+para los parámetros que no se proporcionen al llamar a la función. */
 
 //ES5
 function newUser(name, age, country) {

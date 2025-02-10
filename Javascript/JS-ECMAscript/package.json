@@ -8,5 +8,8 @@
   "keywords": [],
   "author": "Santiago Miranda <santiagoCamejo21@gmial.com>",
   "license": "MIT",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
 }

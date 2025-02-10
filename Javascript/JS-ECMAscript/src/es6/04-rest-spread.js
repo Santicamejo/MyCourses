@@ -1,4 +1,6 @@
-// Array destructuring 
+/* Array destructuring 
+La desestructuración permite extraer valores de matrices u objetos en variables distintas. */
+
 let fruits = ["Bananas", "Apples", "Oranges"]
 let [a, b, c] = fruits
 console.log(a, b, fruits[2]);

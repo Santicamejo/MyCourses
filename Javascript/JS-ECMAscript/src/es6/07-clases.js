@@ -1,7 +1,7 @@
+/*ES6 introdujo la sintaxis de clases, que es una forma más sencilla y clara de crear objetos y manejar la herencia.*/
 class User {};  // creacion/declaracion de la clase
 
 const Santi = new User;    // creacion de una instancia de la clase User
-
 
 class user {
     //methodos
@@ -31,7 +31,7 @@ const carlos = new usuario();
 
 _____________________________________
 
-// This
+// This hace referencia al name de la clase mascota
 class mascota{
     constructor(name) {
       this.name = name
@@ -72,5 +72,5 @@ class dog{
 
 const dog1 = new dog('Tobi', 1);
 console.log(dog1.id);
-console.log(dog1.id = 2);
+console.log(dog1.id = 4);
 console.log(dog1.greatings());
