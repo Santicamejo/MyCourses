@@ -1,0 +1,47 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 15px;
+    text-decoration: none;
+    padding: none;
+    margin: none;
+}
+a{
+    text-decoration: none;
+}
+header{
+    height: 100%;
+    width: 90vw;
+}
+header nav{
+    display: flex;
+    justify-content: end;
+    background-color: aquamarine;
+}
+header nav .rightNav{
+    width: 200px;
+    height: auto;
+    display: flex;
+    list-style: none;
+    align-items: center; /*Centrado vertical*/
+}
+.rightNav a{
+    margin-left: 10px;
+    color: black;
+}
+.store img{
+    background-image: url(/media/appsIcon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 35px;
+    height: 35px;
+}
+.pfp img{
+    background-image: url(/media/appsIcon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+}
