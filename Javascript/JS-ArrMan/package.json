@@ -1,0 +1,19 @@
+{
+  "name": "js-arrman",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "Javascript",
+    "Array"
+  ],
+  "license": "MIT",
+  "author": "Santi Camejo <Santiagocamejo21@gmail.com>",
+  "type": "commonjs",
+  "main": "index.js",
+  "dependencies": {
+    "http-server": "14.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
