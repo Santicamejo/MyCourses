@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea</title>
+</head>
+<body>
+    <div id="app1"></div>
+    <div id="app"></div>
+    <script>
+        const products = [
+            {name: "Leche", price: 64},
+            {name: "Queso", price: 120},
+            {name: "Pan", price: 40},
+            {name: "Huevos", price: 164},
+        ];
+        const app1 = document.getElementById('app');
+        products.forEach(product =>{
+            app1.innerHTML += `<li>${product.name} - ${product.price}$</li>`
+        })
+    </script>
+    <script>
+        const tasks = [
+            {name: "Lavar los Platos", chekmark: 1},
+            {name: "Colgar la ropa", chekmark: 1},
+            {name: "Desayunar", chekmark: 0},
+            {name: "Cocinar", chekmark: 0},
+        ];
+        const app = document.getElementById('app');
+        const list = tasks.map(task =>{ 
+            if (task.chekmark === 1) { 
+                return `<li>${task.name} - ${task.chekmark = '&check;'}</li>`
+            }else{
+                return `<li>${task.name} - ${task.chekmark = '&cross;'}</li>`
+            }
+        })
+        app.innerHTML = list.join('-')
+    </script>
+</body>
+</html>
